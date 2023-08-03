@@ -22,15 +22,8 @@ const debounce = (callback, time) => {
     };
 };
 
-function _calculateAge(birthday) {
-    var ageDifMs = Date.now() - birthday.getTime();
-    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-}
-
 const validateAge = (e) => {
-    const now = new Date(e.target.value);
-    const age = _calculateAge(now);
+    let age=Number(new Date().getFullYear())-Number(new Date(e.target.value).getFullYear());
     if (age < 18 || age > 55) {
         dob.setCustomValidity("You are not eligible. Ages 18 to 55 only");
         dob.reportValidity();
